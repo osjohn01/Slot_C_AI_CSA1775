@@ -5,7 +5,7 @@ class Node:
         self.fval = fval
 
     def generate_child(self):
-        x,y = self.find(self.data,'_')
+        x,y = self.find(self.data,'0')
         val_list = [[x,y-1],[x,y+1],[x-1,y],[x+1,y]]
         children = []
         for i in val_list:
@@ -69,21 +69,18 @@ class Puzzle:
         
 
     def process(self):
-        print("Enter the start state matrix \n")
+        print("ENTER THE START STATE OF THE MATRIX\n\n")
         start = self.accept()
-        print("Enter the goal state matrix \n")        
+        print("ENTER THE GOAL STATE OF THE MATRIX\n\n")        
         goal = self.accept()
 
         start = Node(start,0,0)
         start.fval = self.f(start,goal)
         self.open.append(start)
-        print("\n\n")
+        print("\n")
         while True:
             cur = self.open[0]
-            print("")
-            print("  | ")
-            print("  | ")
-            print(" \\\'/ \n")
+            print("\n")
             for i in cur.data:
                 for j in i:
                     print(j,end=" ")
