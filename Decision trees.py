@@ -1,43 +1,30 @@
-import random
-
-def display(room):
-    print(room)
-
-room = [
-    [1, 1, 1, 1],
-    [1, 1, 1, 1],
-    [1, 1, 1, 1],
-    [1, 1, 1, 1],
-]
-print("All the rooom are dirty")
-display(room)
-
-x =0
-y= 0
-
-while x < 4:
-    while y < 4:
-        room[x][y] = random.choice([0,1])
-        y+=1
-    x+=1
-    y=0
-
-print("Before cleaning the room I detect all of these random dirts")
-display(room)
-x =0
-y= 0
-z=0
-while x < 4:
-    while y < 4:
-        if room[x][y] == 1:
-            print("Vaccum in this location now,",x, y)
-            room[x][y] = 0
-            print("cleaned", x, y)
-            z+=1
-        y+=1
-    x+=1
-    y=0
-pro= (100-((z/16)*100))
-print("Room is clean now, Thanks for using : 3710933")
-display(room)
-print('performance=',pro,'%')
+from collections import deque
+class Graph:
+    def __init__(self, adjac_lis):
+        self.adjac_lis = adjac_lis
+    def get_neighbors(self, v):
+        return self.adjac_lis[v]
+    def h(self, n):
+        H = {
+            'A': 1,
+            'B': 1,
+            'C': 1,
+            'D': 1
+        }
+        return H[n]
+    def a_star_algorithm(self, start, stop):
+        open_lst = set([start])
+        closed_lst = set([])
+        poo = {}
+        poo[start] = 0
+        par = {}
+        par[start] = start
+ 
+        while len(open_lst) > 0:
+            n = None
+            for v in open_lst:
+                if n == None or poo[v] + self.h(v) < poo[n] + self.h(n):
+                    n = v;
+            if n == None:
+                print('Path does not exist!')
+                return None
